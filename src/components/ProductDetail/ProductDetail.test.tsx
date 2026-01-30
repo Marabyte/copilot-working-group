@@ -28,18 +28,18 @@ describe('ProductDetail Component', () => {
 
   it('should render without crashing', () => {
     renderWithProviders(<ProductDetail />);
-    expect(screen.getByTestId('product-navigation')).not.toBeNull();
+    screen.getByTestId('product-navigation');
   });
 
 
   it('should render all sub-components together', () => {
     renderWithProviders(<ProductDetail />);
     
-    expect(screen.getByTestId('product-navigation')).not.toBeNull();
-    expect(screen.getByTestId('product-image')).not.toBeNull();
-    expect(screen.getByTestId('product-info')).not.toBeNull();
-    expect(screen.getByTestId('product-meta')).not.toBeNull();
-    expect(screen.getByTestId('product-actions')).not.toBeNull();
+    screen.getByTestId('product-navigation');
+    screen.getByTestId('product-image');
+    screen.getByTestId('product-info');
+    screen.getByTestId('product-meta');
+    screen.getByTestId('product-actions');
   });
 
   it('should have the correct container structure with CSS classes', () => {
@@ -62,7 +62,6 @@ describe('ProductDetail Component', () => {
     const { container } = renderWithProviders(<ProductDetail />);
     
     const infoSection = container.querySelector('div[class*="infoSection"]');
-    expect(infoSection).not.toBeNull();
     
     // Check that the info section contains the expected components
     const info = screen.getByTestId('product-info');
