@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../test/utils';
 import { ProductDetail } from './index';
-import { QueryClient } from '@tanstack/react-query';
 
 // Mock the child components to isolate ProductDetail testing
 vi.mock('../ProductNavigation', () => ({
@@ -26,26 +25,15 @@ vi.mock('../ProductActions', () => ({
 }));
 
 describe('ProductDetail Component', () => {
-  let queryClient: QueryClient;
-
-  beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    });
-  });
 
   it('should render without crashing', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
+    renderWithProviders(<ProductDetail />);
     expect(screen.getByTestId('product-navigation')).toBeInTheDocument();
   });
 
 
   it('should render all sub-components together', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
+    renderWithProviders(<ProductDetail />);
     
     expect(screen.getByTestId('product-navigation')).toBeInTheDocument();
     expect(screen.getByTestId('product-image')).toBeInTheDocument();
@@ -55,7 +43,7 @@ describe('ProductDetail Component', () => {
   });
 
   it('should have the correct container structure with CSS classes', () => {
-    const { container } = renderWithProviders(<ProductDetail />, { queryClient });
+    const { container } = renderWithProviders(<ProductDetail />);
     
     // Check for container div
     const containerDiv = container.querySelector('div[class*="container"]');
@@ -71,7 +59,7 @@ describe('ProductDetail Component', () => {
   });
 
   it('should render ProductInfo, ProductMeta, and ProductActions within infoSection', () => {
-    const { container } = renderWithProviders(<ProductDetail />, { queryClient });
+    const { container } = renderWithProviders(<ProductDetail />);
     
     const infoSection = container.querySelector('div[class*="infoSection"]');
     expect(infoSection).toBeInTheDocument();
@@ -87,7 +75,7 @@ describe('ProductDetail Component', () => {
   });
 
   it('should render ProductNavigation outside the product section', () => {
-    const { container } = renderWithProviders(<ProductDetail />, { queryClient });
+    const { container } = renderWithProviders(<ProductDetail />);
     
     const containerDiv = container.querySelector('div[class*="container"]');
     const productDiv = container.querySelector('div[class*="product"]');
@@ -98,7 +86,7 @@ describe('ProductDetail Component', () => {
   });
 
   it('should maintain proper component hierarchy', () => {
-    const { container } = renderWithProviders(<ProductDetail />, { queryClient });
+    const { container } = renderWithProviders(<ProductDetail />);
     
     // Get all elements
     const containerDiv = container.querySelector('div[class*="container"]') as HTMLElement;
