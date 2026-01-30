@@ -28,18 +28,18 @@ describe('ProductDetail Component', () => {
 
   it('should render without crashing', () => {
     renderWithProviders(<ProductDetail />);
-    expect(screen.getByTestId('product-navigation')).toBeInTheDocument();
+    expect(screen.getByTestId('product-navigation')).not.toBeNull();
   });
 
 
   it('should render all sub-components together', () => {
     renderWithProviders(<ProductDetail />);
     
-    expect(screen.getByTestId('product-navigation')).toBeInTheDocument();
-    expect(screen.getByTestId('product-image')).toBeInTheDocument();
-    expect(screen.getByTestId('product-info')).toBeInTheDocument();
-    expect(screen.getByTestId('product-meta')).toBeInTheDocument();
-    expect(screen.getByTestId('product-actions')).toBeInTheDocument();
+    expect(screen.getByTestId('product-navigation')).not.toBeNull();
+    expect(screen.getByTestId('product-image')).not.toBeNull();
+    expect(screen.getByTestId('product-info')).not.toBeNull();
+    expect(screen.getByTestId('product-meta')).not.toBeNull();
+    expect(screen.getByTestId('product-actions')).not.toBeNull();
   });
 
   it('should have the correct container structure with CSS classes', () => {
@@ -47,31 +47,31 @@ describe('ProductDetail Component', () => {
     
     // Check for container div
     const containerDiv = container.querySelector('div[class*="container"]');
-    expect(containerDiv).toBeInTheDocument();
+    expect(containerDiv).not.toBeNull();
     
     // Check for product div
     const productDiv = container.querySelector('div[class*="product"]');
-    expect(productDiv).toBeInTheDocument();
+    expect(productDiv).not.toBeNull();
     
     // Check for infoSection div
     const infoSectionDiv = container.querySelector('div[class*="infoSection"]');
-    expect(infoSectionDiv).toBeInTheDocument();
+    expect(infoSectionDiv).not.toBeNull();
   });
 
   it('should render ProductInfo, ProductMeta, and ProductActions within infoSection', () => {
     const { container } = renderWithProviders(<ProductDetail />);
     
     const infoSection = container.querySelector('div[class*="infoSection"]');
-    expect(infoSection).toBeInTheDocument();
+    expect(infoSection).not.toBeNull();
     
     // Check that the info section contains the expected components
     const info = screen.getByTestId('product-info');
     const meta = screen.getByTestId('product-meta');
     const actions = screen.getByTestId('product-actions');
     
-    expect(infoSection).toContainElement(info);
-    expect(infoSection).toContainElement(meta);
-    expect(infoSection).toContainElement(actions);
+    expect(infoSection?.contains(info)).toBe(true);
+    expect(infoSection?.contains(meta)).toBe(true);
+    expect(infoSection?.contains(actions)).toBe(true);
   });
 
   it('should render ProductNavigation outside the product section', () => {
@@ -81,8 +81,8 @@ describe('ProductDetail Component', () => {
     const productDiv = container.querySelector('div[class*="product"]');
     const navigation = screen.getByTestId('product-navigation');
     
-    expect(containerDiv).toContainElement(navigation);
-    expect(productDiv).not.toContainElement(navigation);
+    expect(containerDiv?.contains(navigation)).toBe(true);
+    expect(productDiv?.contains(navigation)).toBe(false);
   });
 
   it('should maintain proper component hierarchy', () => {
@@ -94,8 +94,8 @@ describe('ProductDetail Component', () => {
     const infoSection = container.querySelector('div[class*="infoSection"]') as HTMLElement;
     
     // Verify hierarchy
-    expect(containerDiv).toContainElement(productDiv);
-    expect(productDiv).toContainElement(infoSection);
-    expect(productDiv).toContainElement(screen.getByTestId('product-image'));
+    expect(containerDiv?.contains(productDiv)).toBe(true);
+    expect(productDiv?.contains(infoSection)).toBe(true);
+    expect(productDiv?.contains(screen.getByTestId('product-image'))).toBe(true);
   });
 });
