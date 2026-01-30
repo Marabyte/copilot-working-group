@@ -69,9 +69,9 @@ describe('ProductDetail Component', () => {
     const meta = screen.getByTestId('product-meta');
     const actions = screen.getByTestId('product-actions');
     
-    expect(infoSection?.contains(info)).toBe(true);
-    expect(infoSection?.contains(meta)).toBe(true);
-    expect(infoSection?.contains(actions)).toBe(true);
+    expect(infoSection!.contains(info)).toBe(true);
+    expect(infoSection!.contains(meta)).toBe(true);
+    expect(infoSection!.contains(actions)).toBe(true);
   });
 
   it('should render ProductNavigation outside the product section', () => {
@@ -81,21 +81,21 @@ describe('ProductDetail Component', () => {
     const productDiv = container.querySelector('div[class*="product"]');
     const navigation = screen.getByTestId('product-navigation');
     
-    expect(containerDiv?.contains(navigation)).toBe(true);
-    expect(productDiv?.contains(navigation)).toBe(false);
+    expect(containerDiv!.contains(navigation)).toBe(true);
+    expect(productDiv!.contains(navigation)).toBe(false);
   });
 
   it('should maintain proper component hierarchy', () => {
     const { container } = renderWithProviders(<ProductDetail />);
     
     // Get all elements
-    const containerDiv = container.querySelector('div[class*="container"]') as HTMLElement;
-    const productDiv = container.querySelector('div[class*="product"]') as HTMLElement;
-    const infoSection = container.querySelector('div[class*="infoSection"]') as HTMLElement;
+    const containerDiv = container.querySelector('div[class*="container"]');
+    const productDiv = container.querySelector('div[class*="product"]');
+    const infoSection = container.querySelector('div[class*="infoSection"]');
     
     // Verify hierarchy
-    expect(containerDiv?.contains(productDiv)).toBe(true);
-    expect(productDiv?.contains(infoSection)).toBe(true);
-    expect(productDiv?.contains(screen.getByTestId('product-image'))).toBe(true);
+    expect(containerDiv!.contains(productDiv)).toBe(true);
+    expect(productDiv!.contains(infoSection)).toBe(true);
+    expect(productDiv!.contains(screen.getByTestId('product-image'))).toBe(true);
   });
 });
