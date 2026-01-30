@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-This repository hosts hands-on workshops to learn and practice GitHub Copilot. It's a React-based web application designed for educational purposes, demonstrating Copilot features including Chat in the GitHub UI, Copilot in VSCode, and custom agents.
+This repository hosts hands-on workshops to learn and practice GitHub Copilot. It's a React-based web application designed for educational purposes, demonstrating Copilot features including Chat in the GitHub UI, Copilot in VS Code, and custom agents.
 
 ## Technology Stack
 
