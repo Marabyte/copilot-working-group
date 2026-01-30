@@ -6,19 +6,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 export function renderWithProviders(
   ui: ReactNode,
   {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    }),
+    queryClient,
     ...renderOptions
   }: RenderOptions & {
     queryClient?: QueryClient;
   } = {}
 ) {
   function Wrapper({ children }: { children: ReactNode }) {
+    if (!queryClient) {
+      return <>{children}</>;
+    }
     return (
       <QueryClientProvider client={queryClient}>
         {children}

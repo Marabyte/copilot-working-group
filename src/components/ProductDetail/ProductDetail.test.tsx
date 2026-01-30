@@ -43,40 +43,6 @@ describe('ProductDetail Component', () => {
     expect(screen.getByTestId('product-navigation')).toBeInTheDocument();
   });
 
-  it('should render ProductNavigation component', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
-    const navigation = screen.getByTestId('product-navigation');
-    expect(navigation).toBeInTheDocument();
-    expect(navigation).toHaveTextContent('ProductNavigation');
-  });
-
-  it('should render ProductImage component', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
-    const image = screen.getByTestId('product-image');
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveTextContent('ProductImage');
-  });
-
-  it('should render ProductInfo component', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
-    const info = screen.getByTestId('product-info');
-    expect(info).toBeInTheDocument();
-    expect(info).toHaveTextContent('ProductInfo');
-  });
-
-  it('should render ProductMeta component', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
-    const meta = screen.getByTestId('product-meta');
-    expect(meta).toBeInTheDocument();
-    expect(meta).toHaveTextContent('ProductMeta');
-  });
-
-  it('should render ProductActions component', () => {
-    renderWithProviders(<ProductDetail />, { queryClient });
-    const actions = screen.getByTestId('product-actions');
-    expect(actions).toBeInTheDocument();
-    expect(actions).toHaveTextContent('ProductActions');
-  });
 
   it('should render all sub-components together', () => {
     renderWithProviders(<ProductDetail />, { queryClient });
